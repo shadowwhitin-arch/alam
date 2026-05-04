@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Undangan Pernikahan</title><style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Georgia', serif;
+}
+
+body {
+  color: #fff;
+}
+
+/* BACKGROUND VIDEO */
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background: white;
+  color: black;
+}
+
+/* SECTION */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.card {
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+</style></head><body><!-- BACKGROUND VIDEO --><video autoplay muted loop id="bgVideo">
+  <source src="bg.mp4" type="video/mp4">
+</video><!-- AUDIO --><audio id="musik" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio><!-- NAVIGATION --><nav>
+  <a href="#cover">Cover</a>
+  <a href="#acara">Acara</a>
+  <a href="#lokasi">Lokasi</a>
+  <a href="#rsvp">RSVP</a>
+  <a href="#penutup">Penutup</a>
+</nav><!-- COVER --><section id="cover">
+  <div class="card">
+    <h2>WELCOME TO WEDDING</h2>
+    <h1>ASWP ILYAS & AI SITI RAHMAWATIn</h1>
+    <p>Buka Undangan</p>
+    <button onclick="document.getElementById('musik').play()">Putar Musik</button>
+  </div>
+</section><!-- ACARA --><section id="acara">
+  <div class="card">
+    <h2>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+    <p>Dengan memohon rahmat Allah SWT, kami mengundang Anda untuk hadir di acara pernikahan kami.</p>
+    <br>
+    <h3>Akad Nikah</h3>
+    <p>Minggu, 07 Juni 2026</p>
+    <p>08:00 WIB</p>
+    <br>
+    <h3>Resepsi</h3>
+    <p>10:00 - Selesai</p>
+  </div>
+</section><!-- LOKASI --><section id="lokasi">
+  <div class="card">
+    <h2>Lokasi Acara</h2>
+    <p>Gedung Serbaguna / Rumah Mempelai</p>
+    <br>
+    <a href=Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196">
+      <button>Lihat Maps</button>
+    </a>
+  </div>
+</section><!-- RSVP --><section id="rsvp">
+  <div class="card">
+    <h2>RSVP</h2>
+    <p>Konfirmasi kehadiran Anda</p>
+    <input type="text" placeholder="Nama" />
+    <br><br>
+    <button>Kirim</button>
+  </div>
+</section><!-- PENUTUP --><section id="penutup">
+  <div class="card">
+    <h2>Terima Kasih</h2>
+    <p>Merupakan suatu kehormatan bagi kami jika Anda hadir</p>
+    <br>
+    <p>🙏</p>
+  </div>
+</section></body>
+</html>
