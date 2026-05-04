@@ -3,138 +3,188 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Undangan Pernikahan</title><style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-  font-family: 'Georgia', serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family:'Georgia',serif;
 }
 
-body {
-  color: #fff;
+body{
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* BACKGROUND VIDEO */
-#bgVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
-  filter: brightness(0.5);
+/* BACKGROUND */
+#bgVideo{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-3;
+  filter:brightness(0.45);
 }
 
-/* NAVBAR */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 10px;
-  z-index: 1000;
+/* FLOWER ANIMATION */
+.flower{
+  position:fixed;
+  top:-50px;
+  width:20px;
+  height:20px;
+  background:url('https://i.ibb.co/0jW4G6R/flower.png');
+  background-size:cover;
+  opacity:0.7;
+  animation:fall linear infinite;
+  z-index:-1;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 20px;
-  transition: 0.3s;
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
 }
 
-nav a:hover {
-  background: white;
-  color: black;
+/* NAV BOTTOM */
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:rgba(0,0,0,0.7);
+  padding:10px;
+  z-index:1000;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:12px;
 }
 
 /* SECTION */
-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 20px;
+section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:60px 20px;
 }
 
-h1, h2 {
-  margin-bottom: 10px;
+.card{
+  background:rgba(0,0,0,0.55);
+  padding:20px;
+  border-radius:20px;
+  max-width:500px;
+  animation:fadeIn 1s ease;
 }
 
-.card {
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 500px;
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+h1,h2{
+  margin-bottom:10px;
 }
 
-</style></head><body><!-- BACKGROUND VIDEO --><video autoplay muted loop id="bgVideo">
+/* TYPE ANIMATION */
+.typing{
+  overflow:hidden;
+  border-right:.15em solid white;
+  white-space:nowrap;
+  animation:typing 4s steps(40,end),blink .8s infinite;
+}
+
+@keyframes typing{
+  from{width:0;}
+  to{width:100%;}
+}
+
+@keyframes blink{
+  50%{border-color:transparent;}
+}
+
+button{
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+img{
+  width:120px;
+  margin:10px;
+}
+
+</style></head><body><video autoplay muted loop id="bgVideo">
   <source src="bg.mp4" type="video/mp4">
-</video><!-- AUDIO --><audio id="musik" loop>
-  <source src="musik.mp3" type="audio/mpeg">
-</audio><!-- NAVIGATION --><nav>
-  <a href="#cover">Cover</a>
+</video><!-- FLOWERS --><script>
+for(let i=0;i<15;i++){
+  let f=document.createElement('div');
+  f.className='flower';
+  f.style.left=Math.random()*100+'vw';
+  f.style.animationDuration=(5+Math.random()*10)+'s';
+  document.body.appendChild(f);
+}
+</script><!-- NAV --><nav>
+  <a href="#cover">Home</a>
   <a href="#acara">Acara</a>
-  <a href="#lokasi">Lokasi</a>
+  <a href="#lokasi">Maps</a>
   <a href="#rsvp">RSVP</a>
-  <a href="#penutup">Penutup</a>
+  <a href="#penutup">Doa</a>
 </nav><!-- COVER --><section id="cover">
   <div class="card">
-    <h2>WELCOME TO WEDDING</h2>
-    <h1>ASWP ILYAS & AI SITI RAHMAWATIn</h1>
-    <p>Buka Undangan</p>
-    <button onclick="document.getElementById('musik').play()">Putar Musik</button>
+    <h2 class="typing">WELCOME TO OUR WEDDING</h2>
+    <img src="https://i.ibb.co/0r2t6Qf/couple-cartoon.png" alt="couple" />
+    <h1>Asep Ilyas & Ai Siti</h1>
+    <button onclick="document.getElementById('acara').scrollIntoView()">Buka Undangan</button>
   </div>
 </section><!-- ACARA --><section id="acara">
   <div class="card">
     <h2>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
-    <p>Dengan memohon rahmat Allah SWT, kami mengundang Anda untuk hadir di acara pernikahan kami.</p>
+    <p>Dengan rahmat Allah SWT kami mengundang Anda untuk hadir dalam acara bahagia kami.</p>
+    <br>
+    <h3>Doa & Sambutan</h3>
+    <p>Ya Allah, berkahilah pernikahan ini, jadikanlah kami keluarga yang sakinah mawaddah warahmah.</p>
     <br>
     <h3>Akad Nikah</h3>
-    <p>Minggu, 07 Juni 2026</p>
-    <p>08:00 WIB</p>
-    <br>
+    <p>Minggu, 07 Juni 2026 - 08:00 WIB</p>
     <h3>Resepsi</h3>
     <p>10:00 - Selesai</p>
   </div>
-</section><!-- LOKASI --><section id="lokasi">
+</section><!-- LOKASI --><section id="Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196">
   <div class="card">
     <h2>Lokasi Acara</h2>
     <p>Gedung Serbaguna / Rumah Mempelai</p>
-    <br>
-    <a href=Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196">
+    <a href="https://maps.google.com" target="_blank">
       <button>Lihat Maps</button>
     </a>
   </div>
 </section><!-- RSVP --><section id="rsvp">
   <div class="card">
-    <h2>RSVP</h2>
-    <p>Konfirmasi kehadiran Anda</p>
-    <input type="text" placeholder="Nama" />
-    <br><br>
-    <button>Kirim</button>
+    <h2>RSVP Kehadiran</h2>
+    <input id="nama" placeholder="Nama" />
+    <button onclick="tambahRSVP()">Kirim</button>
+    <p id="total"></p>
   </div>
 </section><!-- PENUTUP --><section id="penutup">
   <div class="card">
-    <h2>Terima Kasih</h2>
-    <p>Merupakan suatu kehormatan bagi kami jika Anda hadir</p>
-    <br>
-    <p>🙏</p>
+    <h2>Doa & Penutup</h2>
+    <p>Semoga kehadiran Anda menjadi berkah bagi kami dan keluarga.</p>
+    <p>Terima kasih atas doa dan restunya 🙏</p>
   </div>
-</section></body>
+</section><script>
+let rsvp=localStorage.getItem('rsvp')||0;
+document.getElementById('total').innerText="Total hadir: "+rsvp;
+
+function tambahRSVP(){
+  rsvp++;
+  localStorage.setItem('rsvp',rsvp);
+  document.getElementById('total').innerText="Total hadir: "+rsvp;
+}
+</script></body>
 </html>
