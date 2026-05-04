@@ -1,190 +1,291 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Undangan Pernikahan</title><style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-  font-family:'Georgia',serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Undangan Pernikahan | Asep Ilyas & Ai Siti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap');
 
-body{
-  color:#fff;
-  overflow-x:hidden;
-}
+    :root {
+      --pink: #f8c4d8;
+      --green: #a8d5ba;
+    }
 
-/* BACKGROUND */
-#bgVideo{
-  position:fixed;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-3;
-  filter:brightness(0.45);
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #f0f7f0, #fff0f5);
+      overflow-x: hidden;
+    }
 
-/* FLOWER ANIMATION */
-.flower{
-  position:fixed;
-  top:-50px;
-  width:20px;
-  height:20px;
-  background:url('https://i.ibb.co/0jW4G6R/flower.png');
-  background-size:cover;
-  opacity:0.7;
-  animation:fall linear infinite;
-  z-index:-1;
-}
+    .title-font {
+      font-family: 'Playfair Display', serif;
+    }
 
-@keyframes fall{
-  0%{transform:translateY(-10vh) rotate(0deg);}
-  100%{transform:translateY(110vh) rotate(360deg);}
-}
+    /* Animasi bunga berjatuhan */
+    .petal {
+      position: absolute;
+      font-size: 20px;
+      color: #ff99cc;
+      pointer-events: none;
+      z-index: 10;
+      animation: fall linear infinite;
+      opacity: 0.85;
+    }
 
-/* NAV BOTTOM */
-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:rgba(0,0,0,0.7);
-  padding:10px;
-  z-index:1000;
-}
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) rotate(720deg);
+      }
+    }
 
-nav a{
-  color:white;
-  text-decoration:none;
-  font-size:12px;
-}
+    /* Cover */
+    .cover {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)), 
+                  url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* SECTION */
-section{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:60px 20px;
-}
+    .gate {
+      font-size: 5rem;
+      transition: all 1.5s ease;
+    }
 
-.card{
-  background:rgba(0,0,0,0.55);
-  padding:20px;
-  border-radius:20px;
-  max-width:500px;
-  animation:fadeIn 1s ease;
-}
+    .opened .gate {
+      transform: scale(0.6) translateY(-30px);
+      opacity: 0.7;
+    }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
-}
+    /* Kartun pasangan */
+    .couple-cartoon {
+      animation: float 4s ease-in-out infinite;
+    }
 
-h1,h2{
-  margin-bottom:10px;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
 
-/* TYPE ANIMATION */
-.typing{
-  overflow:hidden;
-  border-right:.15em solid white;
-  white-space:nowrap;
-  animation:typing 4s steps(40,end),blink .8s infinite;
-}
+    section {
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
-@keyframes typing{
-  from{width:0;}
-  to{width:100%;}
-}
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
 
-@keyframes blink{
-  50%{border-color:transparent;}
-}
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-button{
-  margin-top:10px;
-  padding:10px 20px;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-}
+    .nav-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="text-gray-800">
 
-img{
-  width:120px;
-  margin:10px;
-}
+  <!-- ==================== COVER ==================== -->
+  <section id="cover" class="cover flex flex-col items-center justify-center text-center text-white">
+    <div class="text-6xl mb-4 gate">🌸✨🌸</div>
+    <h1 class="title-font text-5xl md:text-6xl mb-2 tracking-wide">Asep Ilyas</h1>
+    <p class="text-2xl mb-8">&</p>
+    <h1 class="title-font text-5xl md:text-6xl tracking-wide">Ai Siti</h1>
 
-</style></head><body><video autoplay muted loop id="bgVideo">
-  <source src="bg.mp4" type="video/mp4">
-</video><!-- FLOWERS --><script>
-for(let i=0;i<15;i++){
-  let f=document.createElement('div');
-  f.className='flower';
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=(5+Math.random()*10)+'s';
-  document.body.appendChild(f);
-}
-</script><!-- NAV --><nav>
-  <a href="#cover">Home</a>
-  <a href="#acara">Acara</a>
-  <a href="#lokasi">Maps</a>
-  <a href="#rsvp">RSVP</a>
-  <a href="#penutup">Doa</a>
-</nav><!-- COVER --><section id="cover">
-  <div class="card">
-    <h2 class="typing">WELCOME TO OUR WEDDING</h2>
-    <img src="https://i.ibb.co/0r2t6Qf/couple-cartoon.png" alt="couple" />
-    <h1>Asep Ilyas & Ai Siti</h1>
-    <button onclick="document.getElementById('acara').scrollIntoView()">Buka Undangan</button>
-  </div>
-</section><!-- ACARA --><section id="acara">
-  <div class="card">
-    <h2>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
-    <p>Dengan rahmat Allah SWT kami mengundang Anda untuk hadir dalam acara bahagia kami.</p>
-    <br>
-    <h3>Doa & Sambutan</h3>
-    <p>Ya Allah, berkahilah pernikahan ini, jadikanlah kami keluarga yang sakinah mawaddah warahmah.</p>
-    <br>
-    <h3>Akad Nikah</h3>
-    <p>Minggu, 07 Juni 2026 - 08:00 WIB</p>
-    <h3>Resepsi</h3>
-    <p>10:00 - Selesai</p>
-  </div>
-</section><!-- LOKASI --><section id="Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196">
-  <div class="card">
-    <h2>Lokasi Acara</h2>
-    <p>Gedung Serbaguna / Rumah Mempelai</p>
-    <a href="https://maps.google.com" target="_blank">
-      <button>Lihat Maps</button>
-    </a>
-  </div>
-</section><!-- RSVP --><section id="rsvp">
-  <div class="card">
-    <h2>RSVP Kehadiran</h2>
-    <input id="nama" placeholder="Nama" />
-    <button onclick="tambahRSVP()">Kirim</button>
-    <p id="total"></p>
-  </div>
-</section><!-- PENUTUP --><section id="penutup">
-  <div class="card">
-    <h2>Doa & Penutup</h2>
-    <p>Semoga kehadiran Anda menjadi berkah bagi kami dan keluarga.</p>
-    <p>Terima kasih atas doa dan restunya 🙏</p>
-  </div>
-</section><script>
-let rsvp=localStorage.getItem('rsvp')||0;
-document.getElementById('total').innerText="Total hadir: "+rsvp;
+    <div class="mt-12 mb-10">
+      <img src="https://picsum.photos/id/1011/400/400" alt="Pasangan Pengantin Kartun Lucu" 
+           class="couple-cartoon w-64 md:w-80 rounded-full border-8 border-white shadow-2xl mx-auto"/>
+    </div>
 
-function tambahRSVP(){
-  rsvp++;
-  localStorage.setItem('rsvp',rsvp);
-  document.getElementById('total').innerText="Total hadir: "+rsvp;
-}
-</script></body>
+    <button onclick="openInvitation()" 
+            class="bg-white text-pink-600 hover:bg-pink-100 font-medium px-10 py-4 rounded-full text-lg shadow-xl transition-all duration-300 flex items-center gap-3">
+      <i class="fas fa-envelope-open"></i>
+      Buka Undangan
+    </button>
+
+    <p class="mt-10 text-sm tracking-widest">07 Juni 2026</p>
+  </section>
+
+  <!-- ==================== SALAM & DOA ==================== -->
+  <section id="salam" class="bg-white section">
+    <div class="max-w-2xl mx-auto text-center fade-in">
+      <h2 class="title-font text-4xl text-pink-700 mb-8">Assalamu'alaikum Warahmatullahi Wabarakatuh</h2>
+      
+      <p class="text-lg leading-relaxed text-gray-700 mb-10">
+        Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami:
+      </p>
+
+      <div class="my-12">
+        <p class="text-3xl title-font text-pink-600">Asep Ilyas</p>
+        <p class="text-5xl my-4 text-gray-400">&</p>
+        <p class="text-3xl title-font text-pink-600">Ai Siti</p>
+      </div>
+
+      <p class="text-xl font-medium">Minggu, 07 Juni 2026</p>
+      <p class="text-pink-600 mt-2">InsyaAllah</p>
+    </div>
+  </section>
+
+  <!-- ==================== LOKASI & MAPS ==================== -->
+  <section id="lokasi" class="bg-gradient-to-b from-pink-50 to-white section">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="title-font text-4xl text-pink-700 mb-10">Lokasi Acara</h2>
+      
+      <div class="bg-white p-6 rounded-3xl shadow-xl">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5!2d108.2!3d-7.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f5e5e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sTasikmalaya!5e0!3m2!1sid!2sid!4v1234567890" 
+          width="100%" height="400" style="border:0; border-radius:20px;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="mt-8 text-left max-w-md mx-auto bg-white p-6 rounded-2xl shadow">
+        <p class="font-medium flex items-center gap-3">
+          <i class="fas fa-map-marker-alt text-pink-500"></i>
+          Kampung Citundun, RT.003/RW.008, Setiawargi,<br>
+          Kec. Tamansari, Kab. Tasikmalaya,<br>
+          Jawa Barat 46196
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PENUTUP & NOREK ==================== -->
+  <section id="penutup" class="bg-white section">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="title-font text-4xl text-pink-700 mb-8">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</h2>
+      
+      <p class="text-lg leading-relaxed text-gray-700 mb-12">
+        Atas kehadiran dan doa restunya, kami ucapkan terima kasih yang sebesar-besarnya.<br>
+        Wassalamu'alaikum Warahmatullahi Wabarakatuh.
+      </p>
+
+      <div class="bg-pink-50 p-8 rounded-3xl">
+        <p class="text-sm uppercase tracking-widest text-pink-600 mb-2">Hadiah / Amplop Digital</p>
+        <p class="font-medium">Bank BRI</p>
+        <p class="text-2xl font-bold text-pink-700">4444 0101 5688 504</p>
+        <p class="text-sm text-gray-600 mt-1">a.n. Asep Ilyas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RSVP ==================== -->
+  <section id="rsvp" class="bg-gradient-to-b from-white to-pink-50 section">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="title-font text-4xl text-pink-700 mb-10">Konfirmasi Kehadiran (RSVP)</h2>
+      
+      <div class="grid grid-cols-3 gap-6 text-center">
+        <div class="bg-white rounded-2xl p-6 shadow">
+          <p class="text-5xl font-bold text-green-600" id="hadir-count">0</p>
+          <p class="text-sm text-gray-600">Hadir</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow">
+          <p class="text-5xl font-bold text-orange-500" id="tidak-count">0</p>
+          <p class="text-sm text-gray-600">Tidak Hadir</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow">
+          <p class="text-5xl font-bold text-pink-600" id="total-count">0</p>
+          <p class="text-sm text-gray-600">Total</p>
+        </div>
+      </div>
+
+      <button onclick="alert('Fitur RSVP lengkap bisa ditambahkan dengan Google Form atau Firebase. Untuk sekarang, silakan hubungi keluarga secara langsung. Terima kasih!')" 
+              class="mt-12 bg-pink-600 hover:bg-pink-700 text-white font-medium px-12 py-5 rounded-full text-lg shadow-xl transition-all">
+        Konfirmasi Kehadiran
+      </button>
+    </div>
+  </section>
+
+  <!-- Navigasi Bawah -->
+  <nav class="nav-bottom py-3">
+    <div class="flex justify-around text-pink-600 text-xl max-w-md mx-auto">
+      <a href="#cover" class="flex flex-col items-center">
+        <i class="fas fa-home"></i>
+        <span class="text-xs mt-1">Cover</span>
+      </a>
+      <a href="#salam" class="flex flex-col items-center">
+        <i class="fas fa-pray"></i>
+        <span class="text-xs mt-1">Salam</span>
+      </a>
+      <a href="#lokasi" class="flex flex-col items-center">
+        <i class="fas fa-map-marker-alt"></i>
+        <span class="text-xs mt-1">Lokasi</span>
+      </a>
+      <a href="#penutup" class="flex flex-col items-center">
+        <i class="fas fa-heart"></i>
+        <span class="text-xs mt-1">Penutup</span>
+      </a>
+      <a href="#rsvp" class="flex flex-col items-center">
+        <i class="fas fa-envelope"></i>
+        <span class="text-xs mt-1">RSVP</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Script -->
+  <script>
+    // Animasi bunga berjatuhan
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.innerHTML = ['🌸', '🌺', '🌷', '💐', '🌹'][Math.floor(Math.random()*5)];
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (Math.random() * 8 + 10) + 's';
+      petal.style.fontSize = (Math.random() * 18 + 18) + 'px';
+      petal.style.opacity = Math.random() * 0.6 + 0.5;
+      document.body.appendChild(petal);
+
+      setTimeout(() => petal.remove(), 20000);
+    }
+
+    // Buat bunga terus menerus
+    setInterval(createPetal, 280);
+
+    // Open invitation dengan efek gerbang
+    function openInvitation() {
+      const cover = document.getElementById('cover');
+      cover.classList.add('opened');
+      
+      setTimeout(() => {
+        document.getElementById('salam').scrollIntoView({ behavior: 'smooth' });
+      }, 800);
+    }
+
+    // Fade in saat scroll
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Inisialisasi statistik contoh (bisa dihubungkan ke backend nanti)
+    let hadir = 42;
+    let tidak = 8;
+    document.getElementById('hadir-count').textContent = hadir;
+    document.getElementById('tidak-count').textContent = tidak;
+    document.getElementById('total-count').textContent = hadir + tidak;
+
+    // Tailwind script sudah di-load
+  </script>
+</body>
 </html>
