@@ -1,58 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Undangan Pernikahan 3D Cinematic</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
+<title>Undangan Pernikahan 3D Cinematic</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Marcellus&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><style>
   :root{
     --cam-x: 0px;
     --cam-y: 0px;
     --cam-z: 0px;
     --cam-rx: 0deg;
     --cam-ry: 0deg;
-    --cam-scale: 1.4;
+    --cam-scale: 1.38;
   }
 
-  html { scroll-behavior: smooth; }
-  *{ margin:0; padding:0; box-sizing:border-box; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
 
   body{
     font-family:'Cormorant Garamond', serif;
-    overflow:hidden;
     overflow-x:hidden;
+    overflow-y:auto;
     background:
       radial-gradient(1200px 700px at 50% 12%, rgba(255, 225, 140, .12), transparent 55%),
       radial-gradient(900px 500px at 50% 80%, rgba(45, 122, 130, .12), transparent 60%),
       linear-gradient(180deg, #05070b 0%, #091019 34%, #071018 64%, #040608 100%);
     color:#fff;
     perspective: 1600px;
+    -webkit-perspective: 1600px;
     transform-style: preserve-3d;
-  }
-
-  .viewport{
-    position:fixed;
-    inset:0;
-    z-index:1;
-    overflow:hidden;
-    perspective: 1600px;
-    transform-style: preserve-3d;
-  }
-
-  .world-scene{
-    position:absolute;
-    inset:0;
-    transform-style: preserve-3d;
-    transform:
-      translate3d(var(--cam-x), var(--cam-y), var(--cam-z))
-      rotateX(var(--cam-rx))
-      rotateY(var(--cam-ry))
-      scale(var(--cam-scale));
-    will-change: transform;
+    -webkit-transform-style: preserve-3d;
   }
 
   body::before{
@@ -66,7 +50,32 @@
       radial-gradient(circle at 80% 18%, rgba(255,255,255,.05), transparent 10%);
     pointer-events:none;
     z-index:0;
-    transform: translateZ(-600px) scale(1.4);
+  }
+
+  .viewport{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    pointer-events:none;
+  }
+
+  .world-scene{
+    position:absolute;
+    inset:0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform-origin:center center;
+    transform:
+      translate3d(var(--cam-x), var(--cam-y), var(--cam-z))
+      rotateX(var(--cam-rx))
+      rotateY(var(--cam-ry))
+      scale(var(--cam-scale));
+    will-change: transform;
   }
 
   .sky{
@@ -97,9 +106,11 @@
 
   .moon{
     position:absolute;
-    width:160px; height:160px;
+    width:160px;
+    height:160px;
     border-radius:50%;
-    left:50%; top:10%;
+    left:50%;
+    top:10%;
     transform:translateX(-50%);
     background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.98), rgba(255,240,201,.82) 40%, rgba(255,215,138,.18) 65%, transparent 72%);
     box-shadow: 0 0 80px rgba(255, 230, 160, .22);
@@ -187,6 +198,7 @@
     height:420px;
     transform:translateX(-50%);
     transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
   }
 
   .mosque .base{
@@ -240,9 +252,10 @@
     position:absolute;
     left:50%;
     top:-35px;
-    width:24px; height:52px;
+    width:24px;
+    height:52px;
     transform:translateX(-50%);
-    background: linear-gradient(180deg, rgba(255,248,220,.95), rgba(255, 214, 120, .95));
+    background: linear-gradient(180deg, rgba(255,248,220,.95), rgba(255, 214, 120,.95));
     border-radius:12px;
     box-shadow: 0 0 14px rgba(255, 225, 153, .48);
   }
@@ -252,7 +265,8 @@
     position:absolute;
     left:50%;
     top:-58px;
-    width:56px; height:56px;
+    width:56px;
+    height:56px;
     transform:translateX(-50%);
     border-radius:50%;
     background: radial-gradient(circle at 35% 35%, #fffdf5, #f5d98d 40%, #bf8a2d 70%, rgba(0,0,0,.1) 100%);
@@ -262,7 +276,8 @@
   .minaret{
     position:absolute;
     bottom:72px;
-    width:90px; height:275px;
+    width:90px;
+    height:275px;
     border-radius: 40px 40px 18px 18px;
     background:
       linear-gradient(180deg, rgba(255, 238, 191, .92), rgba(223, 168, 63, .98) 30%, rgba(100, 67, 18, .98) 100%);
@@ -278,7 +293,8 @@
     position:absolute;
     left:50%;
     top:-30px;
-    width:44px; height:44px;
+    width:44px;
+    height:44px;
     transform:translateX(-50%);
     border-radius:50%;
     background: radial-gradient(circle at 35% 35%, #fffdf2, #f3db94 42%, #b78128 74%);
@@ -374,7 +390,8 @@
 
   .garden{
     position:absolute;
-    left:0; right:0;
+    left:0;
+    right:0;
     bottom:0;
     height:45%;
     background:
@@ -416,8 +433,10 @@
   .tree .trunk::before{
     content:'';
     position:absolute;
-    left:-45px; top:90px;
-    width:120px; height:10px;
+    left:-45px;
+    top:90px;
+    width:120px;
+    height:10px;
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(255, 220, 150, .1), rgba(123, 76, 24, .96));
     transform: rotate(-28deg);
@@ -426,8 +445,10 @@
   .tree .trunk::after{
     content:'';
     position:absolute;
-    right:-50px; top:38px;
-    width:130px; height:10px;
+    right:-50px;
+    top:38px;
+    width:130px;
+    height:10px;
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(123, 76, 24, .96), rgba(255, 220, 150, .08));
     transform: rotate(22deg);
@@ -500,7 +521,7 @@
     filter: drop-shadow(0 0 16px rgba(255, 230, 150, .4));
   }
 
-  /* --- COVER --- */
+  /* COVER */
   .cover{
     position:fixed;
     top:0;
@@ -514,8 +535,10 @@
     text-align:center;
     color:white;
     perspective: 1800px;
+    -webkit-perspective: 1800px;
     transform-style:preserve-3d;
-    transition: visibility 2s;
+    -webkit-transform-style:preserve-3d;
+    transition: visibility 0s linear 1.8s;
   }
 
   .cover::before{
@@ -536,6 +559,7 @@
     overflow: hidden;
     z-index: 1;
     transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
     backface-visibility: hidden;
     transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1), filter 1.8s ease;
   }
@@ -610,7 +634,6 @@
   }
   .cover.open {
     visibility: hidden;
-    transition-delay: 1.8s;
   }
 
   .content{
@@ -695,7 +718,7 @@
   }
   .btn:hover{ transform:translateY(-2px) scale(1.03); }
 
-  /* --- NAV --- */
+  /* NAV */
   .nav-bottom {
     position: fixed;
     bottom: 0;
@@ -726,13 +749,14 @@
   .nav-item i { font-size: 18px; margin-bottom: 2px; }
   .nav-item.active { color: #8a6a2b; }
 
-  /* --- SCENE SECTION POSITIONS --- */
+  /* SCENE SECTION POSITIONS */
   section{
     position:absolute;
     left:50%;
     top:50%;
     width:min(900px, 92vw);
     transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
     opacity:0.12;
     filter: blur(7px) saturate(.88);
     transition:
@@ -740,6 +764,9 @@
       filter .5s ease,
       transform .5s ease;
     z-index:4;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    will-change: transform, opacity, filter;
   }
 
   #ayat{
@@ -751,33 +778,33 @@
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
   }
   #couple{
-    --sx: 320px;
+    --sx: 180px;
     --sy: -10px;
-    --sz: 1320px;
+    --sz: 900px;
     --ry: -9deg;
     --zoom: 1;
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
   }
   #waktu{
-    --sx: -300px;
+    --sx: -160px;
     --sy: 20px;
-    --sz: 2250px;
+    --sz: 1600px;
     --ry: 9deg;
     --zoom: 1;
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
   }
   #rsvp{
-    --sx: 220px;
+    --sx: 120px;
     --sy: -10px;
-    --sz: 3200px;
+    --sz: 2300px;
     --ry: -7deg;
     --zoom: 1;
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
   }
   #gift{
-    --sx: -220px;
+    --sx: -120px;
     --sy: 10px;
-    --sz: 4050px;
+    --sz: 3000px;
     --ry: 7deg;
     --zoom: 1;
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
@@ -785,13 +812,13 @@
   .footer-section{
     --sx: 0px;
     --sy: 0px;
-    --sz: 4850px;
+    --sz: 3600px;
     --ry: 0deg;
     --zoom: 1;
     transform: translate3d(calc(-50% + var(--sx)), calc(-50% + var(--sy)), var(--sz)) rotateY(var(--ry)) scale(var(--zoom));
   }
 
-  /* --- HANGING LUXURY PANELS --- */
+  /* PANELS */
   .blur-area {
     position:relative;
     background:
@@ -808,6 +835,7 @@
     -webkit-backdrop-filter: blur(10px) saturate(1.08);
     overflow: visible;
     transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
     animation: floatPanel 6s ease-in-out infinite;
   }
 
@@ -872,15 +900,20 @@
 
   h2, h3, p, div { text-shadow: 1px 1px 5px rgba(0,0,0,0.42); }
 
-  /* --- AYAT --- */
-  .ayat-section{
-    min-height: 1px;
-  }
+  /* AYAT */
+  .ayat-section{ min-height: 1px; }
   .ayat-box{
     max-width:760px;
     width:100%;
     padding:54px 30px;
     text-align:center;
+  }
+  .bismillah{
+    font-family:'Marcellus', serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    opacity: .9;
   }
   .arab{
     font-size: clamp(22px, 2.4vw, 32px);
@@ -904,7 +937,7 @@
     50% {opacity: 0;}
   }
 
-  /* --- COUPLE --- */
+  /* COUPLE */
   .couple-section {
     color: white;
     min-height: 1px;
@@ -951,7 +984,7 @@
     color:#f4dd9b;
   }
 
-  /* --- COUNTDOWN --- */
+  /* COUNTDOWN */
   .countdown-wrapper {
     width: 100%;
     text-align: center;
@@ -984,7 +1017,7 @@
   }
   .countdown-item span { font-size: 28px; font-weight: 800; color:#fff2cf; }
 
-  /* --- ACARA --- */
+  /* ACARA */
   .acara-section { color: white; min-height: 1px; }
   .box-wrapper {
     display: flex;
@@ -1042,9 +1075,10 @@
     display:block;
     width:100%;
     height:350px;
+    border:0;
   }
 
-  /* --- RSVP / GIFT / FOOTER --- */
+  /* RSVP / GIFT / FOOTER */
   .rsvp-section, .gift-section, .footer-section {
     text-align: center;
     color: white;
@@ -1064,7 +1098,6 @@
     border-radius:16px;
     background: rgba(255,255,255,0.9);
     color:#222;
-    font-size:14px;
     outline:none;
     box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
     font-family:'Cormorant Garamond', serif;
@@ -1125,13 +1158,14 @@
     padding-bottom: 120px;
   }
 
-  /* --- REVEAL --- */
+  /* REVEAL */
   .animate-zoom,
   .animate-left,
   .animate-right,
   .animate-bottom {
     opacity: 0;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     transition:
       opacity 1.05s cubic-bezier(.2,.8,.2,1),
       transform 1.05s cubic-bezier(.2,.8,.2,1),
@@ -1151,14 +1185,13 @@
     filter: blur(0) !important;
   }
 
-  /* --- SCROLL SPACE --- */
+  /* SCROLL SPACE */
   .scroll-space{
     position:relative;
-    height: 5400px;
+    height: 4200px;
     z-index:0;
   }
 
-  /* --- RESPONSIVE --- */
   @media (max-width: 900px){
     .mosque{
       width: 95vw;
@@ -1168,20 +1201,15 @@
     .minaret.left{ left:10px; }
     .minaret.right{ right:10px; }
     .river{ bottom: 10%; }
+    #couple{ --sx: 80px; }
+    #waktu{ --sx: -60px; }
+    #rsvp{ --sx: 60px; }
+    #gift{ --sx: -60px; }
   }
 
   @media (max-width: 700px){
-    section{
-      width: 94vw;
-    }
-    #couple{ --sx: 120px; }
-    #waktu{ --sx: -90px; }
-    #rsvp{ --sx: 90px; }
-    #gift{ --sx: -90px; }
-  }
-
-  @media (max-width: 600px) {
-    .welcome { font-size: 40px; }
+    section{ width: 94vw; }
+    .welcome { font-size: 42px; }
     .nama { font-size: 34px; }
     .tanggal { font-size: 28px; }
     .save { font-size: 22px; }
@@ -1192,12 +1220,7 @@
     .countdown-item { min-width: 74px; }
     .nama { font-size: 30px; }
   }
-</style>
-</head>
-
-<body>
-
-<div class="viewport">
+</style></head><body><div class="viewport">
   <div class="world-scene" aria-hidden="true">
     <div class="sky"></div>
     <div class="stars"></div>
@@ -1207,183 +1230,179 @@
     <div class="cloud c3"></div>
     <div class="fog"></div>
     <div class="light-rays"></div>
-    <div class="mosque-haze"></div>
+    <div class="mosque-haze"></div><svg class="route-svg" viewBox="0 0 1600 900" preserveAspectRatio="none">
+  <path id="routePath" class="route-path" d="M120,760 C260,650 330,590 460,560 S690,500 800,430 S1030,330 1130,360 S1340,510 1500,250" />
+  <circle id="droneDot" class="drone-dot" r="9" cx="120" cy="760" />
+</svg>
 
-    <svg class="route-svg" viewBox="0 0 1600 900" preserveAspectRatio="none">
-      <path id="routePath" class="route-path" d="M120,760 C260,650 330,590 460,560 S690,500 800,430 S1030,330 1130,360 S1340,510 1500,250" />
-      <circle id="droneDot" class="drone-dot" r="9" cx="120" cy="760" />
-    </svg>
-
-    <div class="mosque">
-      <div class="minaret left">
-        <span class="window w1"></span>
-        <span class="window w2"></span>
-      </div>
-      <div class="minaret right">
-        <span class="window w1"></span>
-        <span class="window w2"></span>
-      </div>
-      <div class="dome"></div>
-      <div class="mosque-arch"></div>
-      <div class="base"></div>
-    </div>
-
-    <div class="garden"></div>
-    <div class="river"></div>
-
-    <div class="tree left">
-      <div class="trunk"></div>
-      <div class="leaf l1"></div>
-      <div class="leaf l2"></div>
-      <div class="leaf l3"></div>
-    </div>
-
-    <div class="tree right">
-      <div class="trunk"></div>
-      <div class="leaf l1"></div>
-      <div class="leaf l2"></div>
-      <div class="leaf l3"></div>
-    </div>
-
-    <div class="vignette"></div>
-
-    <!-- KEEP SECTION STRUCTURE -->
-    <section class="ayat-section" id="ayat" data-depth="300">
-      <div class="ayat-box blur-area animate-zoom">
-        <div class="beads"></div>
-        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-        <div class="arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</div>
-        <div class="arti typing-effect typing-cursor" data-text="“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tenteram kepadanya dan dijadikan-Nya di antaramu rasa kasih dan sayang.”">— QS. Ar-Rum : 21</div>
-      </div>
-    </section>
-
-    <section class="couple-section" id="couple" data-depth="1320">
-      <div class="couple-intro blur-area animate-bottom">
-        <div class="beads"></div>
-        <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-        <p>Assalamu’alaikum Warahmatullahi Wabarakatuh.<br><br>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri hari bahagia kami:</p>
-      </div>
-
-      <div class="couple-box pria blur-area animate-left">
-        <div class="beads"></div>
-        <div class="foto-frame"><img src="pria.jpeg" class="foto-mempelai" alt="Foto mempelai pria"></div>
-        <div>
-          <h2 class="nama-mempelai">Asep Ilyas</h2>
-          <p>Putra dari Bapak Fulan & Ibu Fulanah</p>
-        </div>
-      </div>
-
-      <div class="dan-tanda animate-zoom">&</div>
-
-      <div class="couple-box wanita blur-area animate-right">
-        <div class="beads"></div>
-        <div class="foto-frame"><img src="wanita.jpeg" class="foto-mempelai" alt="Foto mempelai wanita"></div>
-        <div>
-          <h2 class="nama-mempelai">Ai Siti Rahmawati</h2>
-          <p>Putri dari Bapak Fulan & Ibu Fulan</p>
-        </div>
-      </div>
-
-      <div class="countdown-wrapper blur-area animate-bottom">
-        <div class="beads"></div>
-        <p class="menuju">Menuju Hari Bahagia</p>
-        <div class="countdown-container">
-          <div class="countdown-item"><span id="days">00</span><p>Hari</p></div>
-          <div class="countdown-item"><span id="hours">00</span><p>Jam</p></div>
-          <div class="countdown-item"><span id="minutes">00</span><p>Menit</p></div>
-          <div class="countdown-item"><span id="seconds">00</span><p>Detik</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="acara-section" id="waktu" data-depth="2250">
-      <h2 class="judul-acara animate-bottom">Informasi Acara</h2>
-      <div class="box-wrapper">
-        <div class="acara-box blur-area animate-left">
-          <div class="beads"></div>
-          <h3 class="nama-acara">Akad Nikah</h3>
-          <hr class="garis-hias">
-          <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
-          <p><i class="far fa-clock"></i> 08.00 - 10.00 WIB</p>
-        </div>
-
-        <div class="acara-box blur-area animate-right">
-          <div class="beads"></div>
-          <h3 class="nama-acara">Resepsi</h3>
-          <hr class="garis-hias">
-          <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
-          <p><i class="far fa-clock"></i> 10.00 - Selesai</p>
-        </div>
-      </div>
-
-      <div class="alamat-box blur-area animate-bottom">
-        <div class="beads"></div>
-        <i class="fas fa-map-marked-alt" style="font-size:35px; color:#ff4d4d; margin-bottom:15px;"></i>
-        <h3>Kediaman Mempelai Wanita</h3>
-        <p style="margin: 15px 0;">Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196</p>
-        <a href="https://maps.google.com" target="_blank" class="btn-maps">Petunjuk Arah (Maps)</a>
-      </div>
-
-      <div class="map-frame blur-area animate-zoom">
-        <div class="beads"></div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.324003310461!2d108.2435948740523!3d-7.429350173187295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65f7cc0769360f%3A0xed762867b8c83272!2sTOKO%20TAQY!5e0!3m2!1sid!2sid!4v1715150000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </section>
-
-    <section class="rsvp-section" id="rsvp" data-depth="3200">
-      <h2 class="judul-griet animate-bottom">RSVP & Ucapan</h2>
-      <div class="rsvp-box blur-area animate-zoom">
-        <div class="beads"></div>
-        <form id="rsvp-form">
-          <input type="text" placeholder="Nama Lengkap" required>
-          <select required>
-            <option value="">Konfirmasi Kehadiran</option>
-            <option value="Hadir">Hadir</option>
-            <option value="Tidak Hadir">Tidak Hadir</option>
-          </select>
-          <textarea placeholder="Ucapan & Doa Restu" rows="4" required></textarea>
-          <button type="submit" class="btn-send">Kirim Pesan</button>
-        </form>
-
-        <div id="daftarUcapan" style="margin-top: 30px;"></div>
-      </div>
-    </section>
-
-    <section class="gift-section" id="gift" data-depth="4050">
-      <h2 class="judul-griet animate-bottom">Wedding Gift</h2>
-      <p class="animate-bottom blur-area" style="padding:15px 25px; margin-bottom:20px; max-width:760px;">
-        Doa restu Anda merupakan karunia terindah, namun jika ingin memberikan tanda kasih, silakan melalui:
-      </p>
-
-      <div class="gift-wrapper">
-        <div class="gift-card blur-area animate-left">
-          <div class="beads"></div>
-          <img src="bri.png" alt="BRI" class="bank-logo">
-          <p style="font-size: 22px; letter-spacing: 2px;">444401015688504</p>
-          <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
-          <button class="btn-copy" onclick="salinTeks('444401015688504')">Salin Rekening</button>
-        </div>
-
-        <div class="gift-card blur-area animate-right">
-          <div class="beads"></div>
-          <img src="dana.png" alt="DANA" class="bank-logo">
-          <p style="font-size: 22px; letter-spacing: 2px;">6282317958531</p>
-          <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
-          <button class="btn-copy" onclick="salinTeks('6282317958531')">Salin Nomor</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="footer-section animate-zoom blur-area" style="margin: 0 20px 120px;" data-depth="4850">
-      <div class="beads"></div>
-      <p style="margin-bottom:20px;">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
-      <h2 class="judul-griet">Terima Kasih</h2>
-      <div style="font-family:'Marcellus', serif; font-size:30px; letter-spacing:1px;">Asep & Ai Siti</div>
-    </section>
+<div class="mosque">
+  <div class="minaret left">
+    <span class="window w1"></span>
+    <span class="window w2"></span>
   </div>
+  <div class="minaret right">
+    <span class="window w1"></span>
+    <span class="window w2"></span>
+  </div>
+  <div class="dome"></div>
+  <div class="mosque-arch"></div>
+  <div class="base"></div>
 </div>
 
-<section class="cover" id="cover-section">
+<div class="garden"></div>
+<div class="river"></div>
+
+<div class="tree left">
+  <div class="trunk"></div>
+  <div class="leaf l1"></div>
+  <div class="leaf l2"></div>
+  <div class="leaf l3"></div>
+</div>
+
+<div class="tree right">
+  <div class="trunk"></div>
+  <div class="leaf l1"></div>
+  <div class="leaf l2"></div>
+  <div class="leaf l3"></div>
+</div>
+
+<div class="vignette"></div>
+
+<section class="ayat-section" id="ayat" data-depth="300">
+  <div class="ayat-box blur-area animate-zoom">
+    <div class="beads"></div>
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <div class="arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</div>
+    <div class="arti typing-effect typing-cursor" data-text="“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tenteram kepadanya dan dijadikan-Nya di antaramu rasa kasih dan sayang.”">— QS. Ar-Rum : 21</div>
+  </div>
+</section>
+
+<section class="couple-section" id="couple" data-depth="900">
+  <div class="couple-intro blur-area animate-bottom">
+    <div class="beads"></div>
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+    <p>Assalamu’alaikum Warahmatullahi Wabarakatuh.<br><br>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri hari bahagia kami:</p>
+  </div>
+
+  <div class="couple-box pria blur-area animate-left">
+    <div class="beads"></div>
+    <div class="foto-frame"><img src="pria.jpeg" class="foto-mempelai" alt="Foto mempelai pria"></div>
+    <div>
+      <h2 class="nama-mempelai">Asep Ilyas</h2>
+      <p>Putra dari Bapak Fulan & Ibu Fulanah</p>
+    </div>
+  </div>
+
+  <div class="dan-tanda animate-zoom">&</div>
+
+  <div class="couple-box wanita blur-area animate-right">
+    <div class="beads"></div>
+    <div class="foto-frame"><img src="wanita.jpeg" class="foto-mempelai" alt="Foto mempelai wanita"></div>
+    <div>
+      <h2 class="nama-mempelai">Ai Siti Rahmawati</h2>
+      <p>Putri dari Bapak Fulan & Ibu Fulan</p>
+    </div>
+  </div>
+
+  <div class="countdown-wrapper blur-area animate-bottom">
+    <div class="beads"></div>
+    <p class="menuju">Menuju Hari Bahagia</p>
+    <div class="countdown-container">
+      <div class="countdown-item"><span id="days">00</span><p>Hari</p></div>
+      <div class="countdown-item"><span id="hours">00</span><p>Jam</p></div>
+      <div class="countdown-item"><span id="minutes">00</span><p>Menit</p></div>
+      <div class="countdown-item"><span id="seconds">00</span><p>Detik</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="acara-section" id="waktu" data-depth="1600">
+  <h2 class="judul-acara animate-bottom">Informasi Acara</h2>
+  <div class="box-wrapper">
+    <div class="acara-box blur-area animate-left">
+      <div class="beads"></div>
+      <h3 class="nama-acara">Akad Nikah</h3>
+      <hr class="garis-hias">
+      <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
+      <p><i class="far fa-clock"></i> 08.00 - 10.00 WIB</p>
+    </div>
+
+    <div class="acara-box blur-area animate-right">
+      <div class="beads"></div>
+      <h3 class="nama-acara">Resepsi</h3>
+      <hr class="garis-hias">
+      <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
+      <p><i class="far fa-clock"></i> 10.00 - Selesai</p>
+    </div>
+  </div>
+
+  <div class="alamat-box blur-area animate-bottom">
+    <div class="beads"></div>
+    <i class="fas fa-map-marked-alt" style="font-size:35px; color:#ff4d4d; margin-bottom:15px;"></i>
+    <h3>Kediaman Mempelai Wanita</h3>
+    <p style="margin: 15px 0;">Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196</p>
+    <a href="https://maps.google.com" target="_blank" class="btn-maps">Petunjuk Arah (Maps)</a>
+  </div>
+
+  <div class="map-frame blur-area animate-zoom">
+    <div class="beads"></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.324003310461!2d108.2435948740523!3d-7.429350173187295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65f7cc0769360f%3A0xed762867b8c83272!2sTOKO%20TAQY!5e0!3m2!1sid!2sid!4v1715150000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="rsvp-section" id="rsvp" data-depth="2300">
+  <h2 class="judul-griet animate-bottom">RSVP & Ucapan</h2>
+  <div class="rsvp-box blur-area animate-zoom">
+    <div class="beads"></div>
+    <form id="rsvp-form">
+      <input type="text" placeholder="Nama Lengkap" required>
+      <select required>
+        <option value="">Konfirmasi Kehadiran</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Tidak Hadir">Tidak Hadir</option>
+      </select>
+      <textarea placeholder="Ucapan & Doa Restu" rows="4" required></textarea>
+      <button type="submit" class="btn-send">Kirim Pesan</button>
+    </form>
+
+    <div id="daftarUcapan" style="margin-top: 30px;"></div>
+  </div>
+</section>
+
+<section class="gift-section" id="gift" data-depth="3000">
+  <h2 class="judul-griet animate-bottom">Wedding Gift</h2>
+  <p class="animate-bottom blur-area" style="padding:15px 25px; margin-bottom:20px; max-width:760px;">
+    Doa restu Anda merupakan karunia terindah, namun jika ingin memberikan tanda kasih, silakan melalui:
+  </p>
+
+  <div class="gift-wrapper">
+    <div class="gift-card blur-area animate-left">
+      <div class="beads"></div>
+      <img src="bri.png" alt="BRI" class="bank-logo">
+      <p style="font-size: 22px; letter-spacing: 2px;">444401015688504</p>
+      <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
+      <button class="btn-copy" onclick="salinTeks('444401015688504')">Salin Rekening</button>
+    </div>
+
+    <div class="gift-card blur-area animate-right">
+      <div class="beads"></div>
+      <img src="dana.png" alt="DANA" class="bank-logo">
+      <p style="font-size: 22px; letter-spacing: 2px;">6282317958531</p>
+      <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
+      <button class="btn-copy" onclick="salinTeks('6282317958531')">Salin Nomor</button>
+    </div>
+  </div>
+</section>
+
+<section class="footer-section animate-zoom blur-area" style="margin: 0 20px 120px;" data-depth="3600">
+  <div class="beads"></div>
+  <p style="margin-bottom:20px;">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+  <h2 class="judul-griet">Terima Kasih</h2>
+  <div style="font-family:'Marcellus', serif; font-size:30px; letter-spacing:1px;">Asep & Ai Siti</div>
+</section>
+
+  </div>
+</div><section class="cover" id="cover-section">
   <div class="door-left">
     <div class="door-bg"></div>
     <div class="door-overlay"></div>
@@ -1393,9 +1412,7 @@
     <div class="door-bg"></div>
     <div class="door-overlay"></div>
     <div class="door-frame"></div>
-  </div>
-
-  <div class="content">
+  </div> <div class="content">
     <div class="welcome">Welcome To The Wedding Of</div>
     <img src="pasangan.png" class="foto" alt="Foto pasangan">
     <div class="nama">Asep Ilyas <br>&<br> Ai Siti Rahmawati</div>
@@ -1403,23 +1420,15 @@
     <div class="tanggal">07 Juni 2026</div>
     <a href="#ayat" class="btn" id="btn-buka">💌 Buka Undangan</a>
   </div>
-</section>
-
-<div class="nav-bottom">
+</section><div class="nav-bottom">
   <a href="#ayat" class="nav-item active"><i class="fas fa-home"></i><span>Home</span></a>
   <a href="#couple" class="nav-item"><i class="fas fa-heart"></i><span>Couple</span></a>
   <a href="#waktu" class="nav-item"><i class="fas fa-calendar-check"></i><span>Acara</span></a>
   <a href="#rsvp" class="nav-item"><i class="fas fa-envelope-open-text"></i><span>RSVP</span></a>
   <a href="#gift" class="nav-item"><i class="fas fa-gift"></i><span>Gift</span></a>
-</div>
-
-<div class="scroll-space"></div>
-
-<audio id="myAudio" loop>
+</div><div class="scroll-space"></div><audio id="myAudio" loop>
   <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
+</audio><script>
   function salinTeks(teks) {
     navigator.clipboard.writeText(teks).then(function() {
       alert("Berhasil disalin: " + teks);
@@ -1459,19 +1468,18 @@
     }
 
     const route = [
-      { p: 0.00, x: 0,   y: 0,    z: 0,    rx: 0.0, ry: 0.0, scale: 1.36 },
-      { p: 0.12, x: 0,   y: 8,    z: 430,  rx: 0.5, ry: 0.0, scale: 1.38 },
-      { p: 0.24, x: -70, y: 34,   z: 980,  rx: 0.8, ry: 2.5, scale: 1.41 },
-      { p: 0.38, x: 160, y: 18,   z: 1650, rx: -0.4, ry: -4.5, scale: 1.45 },
-      { p: 0.52, x: -170,y: 8,    z: 2320, rx: 0.6, ry: 5.5, scale: 1.49 },
-      { p: 0.68, x: 120, y: 16,   z: 3050, rx: -0.2, ry: -3.8, scale: 1.53 },
-      { p: 0.84, x: -55, y: 4,    z: 3850, rx: 0.2, ry: 1.8, scale: 1.57 },
-      { p: 1.00, x: 0,   y: 0,    z: 4700, rx: 0.0, ry: 0.0, scale: 1.60 }
+      { p: 0.00, x: 0, y: 0, z: 0, rx: 0.0, ry: 0.0, scale: 1.36 },
+      { p: 0.12, x: 0, y: 8, z: 250, rx: 0.5, ry: 0.0, scale: 1.38 },
+      { p: 0.24, x: -40, y: 34, z: 700, rx: 0.8, ry: 2.0, scale: 1.40 },
+      { p: 0.38, x: 120, y: 18, z: 1150, rx: -0.4, ry: -3.8, scale: 1.43 },
+      { p: 0.52, x: -130,y: 8, z: 1650, rx: 0.6, ry: 4.5, scale: 1.46 },
+      { p: 0.68, x: 90, y: 16, z: 2150, rx: -0.2, ry: -3.0, scale: 1.49 },
+      { p: 0.84, x: -40, y: 4, z: 2750, rx: 0.2, ry: 1.4, scale: 1.52 },
+      { p: 1.00, x: 0, y: 0, z: 3400, rx: 0.0, ry: 0.0, scale: 1.55 }
     ];
 
     function sampleRoute(t) {
       const tt = clamp(t, 0, 1);
-
       let a = route[0];
       let b = route[route.length - 1];
 
@@ -1539,10 +1547,9 @@
       tombolBuka.addEventListener('click', function(e) {
         e.preventDefault();
         cover.classList.add('open');
-        document.body.style.overflow = "auto";
         navigasi.classList.add('show');
         musik.play().catch(err => console.log("Autoplay ditolak:", err));
-        setTimeout(() => { cover.style.display = 'none'; }, 2000);
+        setTimeout(() => { cover.style.display = 'none'; }, 1800);
       });
     }
 
@@ -1565,7 +1572,7 @@
         if (entry.isIntersecting && !isTyped) {
           isTyped = true;
           const el = entry.target;
-          const text = el.getAttribute('data-text');
+          const text = el.getAttribute('data-text') || '';
           el.innerText = '';
           el.classList.add('typing-cursor');
           let i = 0;
@@ -1609,9 +1616,7 @@
       document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
     }, 1000);
   });
-</script>
-
-<script type="module">
+</script><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -1681,7 +1686,5 @@ onSnapshot(q, (snapshot) => {
     daftarUcapan.appendChild(item);
   });
 });
-</script>
-
-</body>
+</script></body>
 </html>
