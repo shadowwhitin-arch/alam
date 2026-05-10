@@ -13,24 +13,27 @@
   html { scroll-behavior: smooth; }
   *{ margin:0; padding:0; box-sizing:border-box; }
 
-  body{
-    font-family:'Poppins', sans-serif;
-    overflow:hidden; /* Terkunci saat cover belum dibuka */
+  body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; /* Terkunci saat cover belum dibuka */
     overflow-x: hidden;
-    /* Background utama tetap terang dan jelas */
-    background: url("cover.jpeg") center/cover no-repeat fixed; 
+    /* Background ikut bergulir (tidak fixed) dan mengulang ke bawah agar tidak pecah/melar */
+    background: url("cover.jpeg") top center / 100% auto repeat; 
+    color: white;
   }
 
+  /* Agar semua teks langsung terbaca jelas di atas background tanpa kotak */
+  h2, h3, p, div, span { text-shadow: 2px 2px 6px rgba(0,0,0,0.8); }
+
   /* --- ANIMASI COVER BUKA PINTU GERBANG --- */
-  .cover{
-    position:fixed; top:0; left:0; width:100vw; height:100vh;
-    z-index:10000;
-    display:flex; justify-content:center; align-items:center;
-    text-align:center; color:white;
+  .cover {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 10000;
+    display: flex; justify-content: center; align-items: center;
+    text-align: center; color: white;
     transition: visibility 2s;
   }
 
-  /* Logika Pintu: Membagi 100vw jadi 2 (Kiri dan Kanan) */
   .door-left, .door-right {
     position: absolute; top: 0; width: 50vw; height: 100vh;
     overflow: hidden; z-index: 1;
@@ -39,15 +42,13 @@
   .door-left { left: 0; }
   .door-right { right: 0; }
 
-  /* Background di dalam pintu dibuat 100vw agar gambarnya utuh */
   .door-bg {
     position: absolute; top: 0; width: 100vw; height: 100vh;
     background: url("cover.jpeg") center/cover no-repeat;
   }
   .door-left .door-bg { left: 0; }
-  .door-right .door-bg { right: 0; } /* Otomatis mengepaskan separuh kanan gambar */
+  .door-right .door-bg { right: 0; }
 
-  /* Overlay tipis khusus di cover agar teks 'Welcome' terbaca */
   .door-overlay {
     position: absolute; top: 0; width: 100vw; height: 100vh;
     background: rgba(0,0,0,0.4); 
@@ -55,13 +56,12 @@
   .door-left .door-overlay { left: 0; }
   .door-right .door-overlay { right: 0; }
 
-  .content{
-    position:relative; z-index:3; width:100%; max-width:600px; padding:20px;
-    display:flex; flex-direction:column; align-items:center;
+  .content {
+    position: relative; z-index: 3; width: 100%; max-width: 600px; padding: 20px;
+    display: flex; flex-direction: column; align-items: center;
     transition: all 1s ease;
   }
 
-  /* Efek Terbelah saat tombol diklik */
   .cover.open .door-left { transform: translateX(-100%); }
   .cover.open .door-right { transform: translateX(100%); }
   .cover.open .content { opacity: 0; transform: scale(1.5); }
@@ -72,98 +72,82 @@
     100% { opacity: 1; transform: scale(1); }
   }
 
-  .welcome{ font-size:36px; letter-spacing:2px; margin-bottom:30px; font-weight:700; text-transform:uppercase; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); }
-  .foto{ width:220px; height:220px; object-fit:cover; border-radius:50%; border:5px solid rgba(255,255,255,0.7); margin-bottom:30px; opacity: 0; animation: fadeInPhoto 2s ease forwards 0.5s; }
-  .nama{ font-family:'Algerian', serif; font-size:58px; margin-bottom:30px; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); }
-  .save{ font-size:18px; letter-spacing:3px; margin-bottom:10px; }
-  .tanggal{ font-size:32px; margin-bottom:40px; font-weight:600; text-shadow: 2px 2px 10px rgba(0,0,0,0.5);}
+  .welcome { font-size: 36px; letter-spacing: 2px; margin-bottom: 30px; font-weight: 700; text-transform: uppercase; }
+  .foto { width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 5px solid rgba(255,255,255,0.7); margin-bottom: 30px; opacity: 0; animation: fadeInPhoto 2s ease forwards 0.5s; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+  .nama { font-family: 'Algerian', serif; font-size: 58px; margin-bottom: 30px; }
+  .save { font-size: 18px; letter-spacing: 3px; margin-bottom: 10px; }
+  .tanggal { font-size: 32px; margin-bottom: 40px; font-weight: 600; }
 
-  .btn{ display:inline-block; padding:15px 35px; background:white; color:black; text-decoration:none; border-radius:50px; font-weight:600; transition:0.3s; cursor: pointer; box-shadow: 0 5px 20px rgba(255,255,255,0.3); }
-  .btn:hover{ transform:scale(1.05); }
+  .btn { display: inline-block; padding: 15px 35px; background: white; color: black; text-decoration: none; border-radius: 50px; font-weight: 600; transition: 0.3s; cursor: pointer; text-shadow: none; box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+  .btn:hover { transform: scale(1.05); }
 
   /* --- MENU BAWAH --- */
   .nav-bottom { position: fixed; bottom: 0; left: 0; width: 100%; display: flex; justify-content: space-around; background: white; padding: 10px 0; z-index: 9999; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); transform: translateY(100%); transition: transform 0.5s ease-in-out; }
   .nav-bottom.show { transform: translateY(0) !important; }
-  .nav-item { text-decoration: none; color: #555; display: flex; flex-direction: column; align-items: center; font-size: 11px; }
+  .nav-item { text-decoration: none; color: #555; display: flex; flex-direction: column; align-items: center; font-size: 11px; text-shadow: none;}
   .nav-item i { font-size: 18px; margin-bottom: 2px; }
-  .nav-item.active { color: #5B7C71; /* Warna Sage Green */ }
-
-  /* --- BLUR AREA (Menempel di Background, Tanpa Garis Kotak) --- */
-  .blur-area {
-    /* Background transparan gelap secukupnya agar teks terbaca */
-    background: rgba(0, 0, 0, 0.4); 
-    /* Blur yang halus menyatu dengan background */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    /* Dihilangkan border dan shadow kotaknya */
-    border: none; 
-    box-shadow: none; 
-    border-radius: 20px; 
-    color: white;
-  }
-
-  /* Tambahan shadow pada teks agar semakin tajam di atas area blur */
-  h2, h3, p, div { text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+  .nav-item.active { color: #5B7C71; }
 
   /* --- AYAT SECTION --- */
-  .ayat-section{ display:flex; justify-content:center; align-items:center; padding:100px 20px; }
-  .ayat-box{ max-width:700px; width:100%; padding:50px 30px; text-align:center; }
-  .bismillah{ font-size:34px; margin-bottom:30px; }
-  .arab{ font-size:28px; line-height:2.1; margin-bottom:25px; }
-  .arti{ font-size:16px; line-height:1.9; min-height: 100px; }
+  .ayat-section { display: flex; justify-content: center; align-items: center; padding: 100px 20px; }
+  .ayat-box { max-width: 700px; width: 100%; padding: 20px; text-align: center; }
+  .bismillah { font-size: 34px; margin-bottom: 30px; }
+  .arab { font-size: 28px; line-height: 2.1; margin-bottom: 25px; }
+  .arti { font-size: 16px; line-height: 1.9; min-height: 100px; }
   
   .typing-cursor::after { content: '|'; animation: blink 1s infinite; margin-left: 5px; }
   @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0;} }
 
-  /* --- COUPLE SECTION --- */
-  .couple-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; color: white;}
-  .couple-intro { text-align: center; margin-bottom: 50px; padding: 30px; max-width: 800px;}
-  .couple-box { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; padding: 25px; width: 100%; max-width: 600px;}
-  .couple-box.wanita { flex-direction: row-reverse; text-align: right; }
-  .foto-frame { width: 140px; height: 140px; flex-shrink: 0; }
-  .foto-mempelai { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid white; }
+  /* --- COUPLE SECTION (Dikembalikan posisinya ke tengah/atas-bawah) --- */
+  .couple-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
+  .couple-intro { text-align: center; margin-bottom: 50px; max-width: 800px; }
+  
+  /* Struktur Flex Column agar Foto di atas, Teks di bawah */
+  .couple-box { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; width: 100%; max-width: 600px; }
+  
+  .foto-frame { width: 160px; height: 160px; margin-bottom: 20px; }
+  .foto-mempelai { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
   .nama-mempelai { font-family: 'Algerian', serif; font-size: 38px; margin-bottom: 5px; }
-  .dan-tanda { font-family: 'Algerian', serif; font-size: 45px; text-align: center; margin: 10px 0; }
+  .dan-tanda { font-family: 'Algerian', serif; font-size: 50px; text-align: center; margin: 20px 0; }
 
   /* --- COUNTDOWN --- */
-  .countdown-wrapper { width: 100%; text-align: center; margin-top: 50px; padding: 30px 20px; max-width: 700px;}
+  .countdown-wrapper { width: 100%; text-align: center; margin-top: 50px; padding: 20px; max-width: 700px;}
   .menuju { font-family: 'Algerian', serif; font-size: 32px; margin-bottom: 20px; }
   .countdown-container { display: flex; justify-content: center; gap: 15px; }
-  .countdown-item { padding: 15px; min-width: 70px; text-align: center; background: rgba(0,0,0,0.5); border-radius: 15px;}
+  /* Transparansi tipis hanya untuk membedakan angka, tanpa box tebal */
+  .countdown-item { padding: 15px; min-width: 70px; text-align: center; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px solid rgba(255,255,255,0.2);}
   .countdown-item span { font-size: 28px; font-weight: 700; }
 
   /* --- ACARA SECTION --- */
-  .acara-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; color: white;}
-  .judul-acara { font-family: 'Algerian', serif; font-size: 50px; margin-bottom: 40px; text-align:center;}
-  .box-wrapper { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
-  .acara-box { padding: 40px 30px; width: 320px; text-align: center; }
+  .acara-section { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
+  .judul-acara { font-family: 'Algerian', serif; font-size: 50px; margin-bottom: 40px; text-align: center; }
+  .box-wrapper { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
+  .acara-box { width: 320px; text-align: center; padding: 20px; }
   .nama-acara { font-family: 'Algerian', serif; font-size: 40px; margin-bottom: 10px; }
-  .garis-hias { width: 50%; margin: 0 auto 20px; border: 0; height: 1px; background: white; opacity: 0.5;}
-  .alamat-box { padding: 25px; max-width: 600px; margin: 0 auto 30px; text-align: center; }
-  .btn-maps { display: inline-block; padding: 12px 25px; background: white; color: #333; text-decoration: none; border-radius: 50px; font-weight: 600; margin-bottom:20px;}
-  .map-frame { border-radius: 20px; overflow: hidden; max-width: 900px; margin: 0 auto; width: 100%;}
+  .garis-hias { width: 50%; margin: 0 auto 20px; border: 0; height: 1px; background: white; opacity: 0.5; }
+  .alamat-box { max-width: 600px; margin: 0 auto 30px; text-align: center; }
+  .btn-maps { display: inline-block; padding: 12px 25px; background: white; color: #333; text-decoration: none; border-radius: 50px; font-weight: 600; margin-bottom: 20px; text-shadow: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+  .map-frame { border-radius: 20px; overflow: hidden; max-width: 900px; margin: 0 auto; width: 100%; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
 
   /* --- RSVP & GIFT --- */
-  .rsvp-section, .gift-section, .footer-section { padding: 80px 20px; text-align: center; color: white; display: flex; flex-direction: column; align-items: center;}
+  .rsvp-section, .gift-section, .footer-section { padding: 80px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; }
   .judul-griet { font-family: 'Algerian', serif; font-size: 40px; margin-bottom: 20px; }
   
-  .rsvp-box { max-width: 600px; width: 100%; padding: 35px; }
-  .rsvp-box input, .rsvp-box select, .rsvp-box textarea { width:100%; padding:14px; margin-bottom:15px; border:none; border-radius:15px; background: rgba(255,255,255,0.8); color:#333; font-size:14px; outline:none; }
-  .btn-send { width:100%; padding:15px; border:none; border-radius:50px; background: #5B7C71; color:white; font-weight:600; cursor:pointer; transition:0.3s; }
+  .rsvp-box { max-width: 600px; width: 100%; padding: 20px; }
+  .rsvp-box input, .rsvp-box select, .rsvp-box textarea { width: 100%; padding: 14px; margin-bottom: 15px; border: none; border-radius: 15px; background: rgba(255,255,255,0.9); color: #333; font-size: 14px; outline: none; text-shadow: none; }
+  .btn-send { width: 100%; padding: 15px; border: none; border-radius: 50px; background: #5B7C71; color: white; font-weight: 600; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-shadow: none; }
   
-  .ucapan-item { padding:15px; margin-bottom:15px; background: rgba(0,0,0,0.4); border-radius: 15px; text-align: left;}
+  .ucapan-item { padding: 15px; margin-bottom: 15px; background: rgba(0,0,0,0.4); border-radius: 15px; text-align: left; }
 
-  .gift-wrapper { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;}
-  .gift-card { padding: 30px; width: 320px; }
-  .bank-logo { width: 100px; margin: 0 auto 15px; display: block; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));}
-  .btn-copy { border: none; padding: 10px 20px; border-radius: 50px; background: white; color: #333; font-weight: 600; cursor: pointer; }
+  .gift-wrapper { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 20px; }
+  .gift-card { width: 320px; text-align: center; padding: 20px; }
+  .bank-logo { width: 100px; margin: 0 auto 15px; display: block; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5)); }
+  .btn-copy { border: none; padding: 10px 20px; border-radius: 50px; background: white; color: #333; font-weight: 600; cursor: pointer; text-shadow: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
   .footer-section { padding-bottom: 120px; }
 
-  /* --- ANIMASI SCROLL (Diperbaiki agar pasti jalan) --- */
+  /* --- ANIMASI SCROLL --- */
   .animate-zoom { opacity: 0; transform: scale(0.85); transition: all 1s ease-out; }
-  .animate-left { opacity: 0; transform: translateX(-40px); transition: all 1s ease-out; }
-  .animate-right { opacity: 0; transform: translateX(40px); transition: all 1s ease-out; }
   .animate-bottom { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
 
   /* Kelas penentu saat masuk layar */
@@ -173,14 +157,13 @@
     .welcome { font-size: 22px; }
     .nama { font-size: 40px; }
     .acara-box { width: 100%; }
-    .couple-box, .couple-box.wanita { flex-direction: column; text-align: center; }
   }
 </style>
 </head>
 
 <body>
 
-<!-- PINTU GERBANG COVER (Gambarnya 100% full dan terbelah rapi) -->
+<!-- PINTU GERBANG COVER -->
 <section class="cover" id="cover-section">
   <div class="door-left">
     <div class="door-bg"></div>
@@ -210,11 +193,10 @@
   <a href="#gift" class="nav-item"><i class="fas fa-gift"></i><span>Gift</span></a>
 </div>
 
-
-<!-- KONTEN UTAMA (Tanpa overlay hitam di body, langsung di atas background) -->
+<!-- KONTEN UTAMA (Tanpa Kotak/Shadow Box, Langsung Nempel Background) -->
 
 <section class="ayat-section" id="ayat">
-  <div class="ayat-box blur-area animate-zoom">
+  <div class="ayat-box animate-zoom">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     <div class="arab">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً</div>
     <div class="arti typing-effect typing-cursor" data-text="“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tenteram kepadanya dan dijadikan-Nya di antaramu rasa kasih dan sayang.”">— QS. Ar-Rum : 21</div>
@@ -222,13 +204,13 @@
 </section>
 
 <section class="couple-section" id="couple">
-  <div class="couple-intro blur-area animate-bottom">
+  <div class="couple-intro animate-bottom">
     <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     <p>Assalamu’alaikum Warahmatullahi Wabarakatuh.<br><br>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri hari bahagia kami:</p>
   </div>
 
-  <!-- Animasi pria dari kiri -->
-  <div class="couple-box pria blur-area animate-left">
+  <!-- Struktur Couple Kembali ke Awal (Foto Atas, Teks Bawah, Tengah) -->
+  <div class="couple-box animate-zoom">
     <div class="foto-frame"><img src="pria.jpeg" class="foto-mempelai"></div>
     <div>
       <h2 class="nama-mempelai">Asep Ilyas</h2>
@@ -238,8 +220,7 @@
 
   <div class="dan-tanda animate-zoom">&</div>
 
-  <!-- Animasi wanita dari kanan -->
-  <div class="couple-box wanita blur-area animate-right">
+  <div class="couple-box animate-zoom">
     <div class="foto-frame"><img src="wanita.jpeg" class="foto-mempelai"></div>
     <div>
       <h2 class="nama-mempelai">Ai Siti Rahmawati</h2>
@@ -247,7 +228,7 @@
     </div>
   </div>
 
-  <div class="countdown-wrapper blur-area animate-bottom">
+  <div class="countdown-wrapper animate-bottom">
     <p class="menuju">Menuju Hari Bahagia</p>
     <div class="countdown-container">
       <div class="countdown-item"><span id="days">00</span><p>Hari</p></div>
@@ -261,14 +242,14 @@
 <section class="acara-section" id="waktu">
   <h2 class="judul-acara animate-bottom">Informasi Acara</h2>
   <div class="box-wrapper">
-    <div class="acara-box blur-area animate-left">
+    <div class="acara-box animate-bottom">
       <h3 class="nama-acara">Akad Nikah</h3>
       <hr class="garis-hias">
       <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
       <p><i class="far fa-clock"></i> 08.00 - 10.00 WIB</p>
     </div>
 
-    <div class="acara-box blur-area animate-right">
+    <div class="acara-box animate-bottom">
       <h3 class="nama-acara">Resepsi</h3>
       <hr class="garis-hias">
       <p><i class="far fa-calendar-alt"></i> Minggu, 07 Juni 2026</p>
@@ -276,21 +257,21 @@
     </div>
   </div>
 
-  <div class="alamat-box blur-area animate-bottom">
-    <i class="fas fa-map-marked-alt" style="font-size:35px; color:#ff4d4d; margin-bottom:15px;"></i>
+  <div class="alamat-box animate-bottom">
+    <i class="fas fa-map-marked-alt" style="font-size:35px; color:#ff4d4d; margin-bottom:15px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.5));"></i>
     <h3>Kediaman Mempelai Wanita</h3>
     <p style="margin: 15px 0;">Kampung citundun, RT.003/RW.008, Setiawargi, Kec. Tamansari, Kab. Tasikmalaya, Jawa Barat 46196</p>
     <a href="https://maps.google.com" target="_blank" class="btn-maps">Petunjuk Arah (Maps)</a>
   </div>
 
-  <div class="map-frame blur-area animate-zoom">
+  <div class="map-frame animate-zoom">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.324003310461!2d108.2435948740523!3d-7.429350173187295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65f7cc0769360f%3A0xed762867b8c83272!2sTOKO%20TAQY!5e0!3m2!1sid!2sid!4v1715150000000!5m2!1sid!2sid" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
 <section class="rsvp-section" id="rsvp">
   <h2 class="judul-griet animate-bottom">RSVP & Ucapan</h2>
-  <div class="rsvp-box blur-area animate-zoom">
+  <div class="rsvp-box animate-zoom">
     <form id="rsvp-form">
       <input type="text" placeholder="Nama Lengkap" required>
       <select required>
@@ -308,17 +289,17 @@
 
 <section class="gift-section" id="gift">
   <h2 class="judul-griet animate-bottom">Wedding Gift</h2>
-  <p class="animate-bottom blur-area" style="padding:15px 25px; margin-bottom:20px;">Doa restu Anda merupakan karunia terindah, namun jika ingin memberikan tanda kasih, silakan melalui:</p>
+  <p class="animate-bottom" style="padding:15px 25px; margin-bottom:20px;">Doa restu Anda merupakan karunia terindah, namun jika ingin memberikan tanda kasih, silakan melalui:</p>
   
   <div class="gift-wrapper">
-    <div class="gift-card blur-area animate-left">
+    <div class="gift-card animate-bottom">
       <img src="bri.png" alt="BRI" class="bank-logo">
       <p style="font-size: 22px; letter-spacing: 2px;">444401015688504</p>
       <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
       <button class="btn-copy" onclick="salinTeks('444401015688504')">Salin Rekening</button>
     </div>
 
-    <div class="gift-card blur-area animate-right">
+    <div class="gift-card animate-bottom">
       <img src="dana.png" alt="DANA" class="bank-logo">
       <p style="font-size: 22px; letter-spacing: 2px;">6282317958531</p>
       <p style="margin-bottom: 20px;">A.n Asep Ilyas</p>
@@ -327,7 +308,7 @@
   </div>
 </section>
 
-<section class="footer-section animate-zoom blur-area" style="margin: 0 20px;">
+<section class="footer-section animate-zoom" style="margin: 0 20px;">
   <p style="margin-bottom:20px;">Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
   <h2 class="judul-griet">Terima Kasih</h2>
   <div style="font-family:'Algerian', serif; font-size:35px;">Asep & Ai Siti</div>
@@ -348,7 +329,6 @@
     const musik = document.getElementById('myAudio');
     const cover = document.getElementById('cover-section');
 
-    // LOGIKA BUKA PINTU
     if (tombolBuka) {
       tombolBuka.addEventListener('click', function(e) {
         e.preventDefault();
@@ -360,7 +340,6 @@
       });
     }
 
-    // ANIMASI SCROLL (Diperbaiki agar deteksi lebih responsif)
     const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -370,10 +349,9 @@
       });
     }, observerOptions);
 
-    const animElements = document.querySelectorAll('.animate-zoom, .animate-left, .animate-right, .animate-bottom');
+    const animElements = document.querySelectorAll('.animate-zoom, .animate-bottom');
     animElements.forEach(el => scrollObserver.observe(el));
 
-    // ANIMASI MENGETIK (TYPEWRITER)
     let isTyped = false;
     const typeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -401,7 +379,6 @@
     const typeElement = document.querySelector('.typing-effect');
     if(typeElement) typeObserver.observe(typeElement);
 
-    // COUNTDOWN
     const targetDate = new Date("June 7, 2026 08:00:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
@@ -417,7 +394,6 @@
 </script>
 
 <script type="module">
-// FIREBASE SCRIPT TETAP SAMA
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
